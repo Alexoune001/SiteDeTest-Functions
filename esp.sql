@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : mer. 25 août 2021 à 19:54
+-- Généré le : jeu. 26 août 2021 à 14:33
 -- Version du serveur : 5.7.31
 -- Version de PHP : 7.3.21
 
@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `pseudo` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
-  `passwd` text NOT NULL,
+  `passwd` varchar(255) NOT NULL,
   `groupe` int(1) NOT NULL DEFAULT '0',
   `date_register` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)

@@ -19,7 +19,7 @@
                             if(isset($_POST['validate']))
                             {
                                 $pseudo = htmlspecialchars($_POST['pseudo']);
-                                $passwd = sha1($_POST['passwd']);
+                                $passwd = $_POST['passwd'];
                                 verifLogin($pseudo, $passwd);
                             }
                         ?>

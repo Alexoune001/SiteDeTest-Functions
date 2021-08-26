@@ -33,7 +33,6 @@ function verifRegister($pseudo, $passwd, $passwd2, $mail, $mail2)
                         $sql = "INSERT INTO users (pseudo, email, passwd) VALUES (?,?,?)";
                         $stmt= $db->prepare($sql);
                         $stmt->execute([$pseudo, $mail, $passwd]);
-
                         echo message('Votre compte a bien été enregistré dans notre base de donnée.', 'success');
                         echo redirectTo('0','/index');
                     }

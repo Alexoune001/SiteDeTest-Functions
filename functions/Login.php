@@ -6,24 +6,28 @@ function verifLogin($pseudo, $passwd)
 {
     $db = dbConnect();
 
-    if(!empty($pseudo) AND !empty($passwd)) {
-        $requser = $db->prepare("SELECT * FROM users WHERE pseudo = ? AND passwd = ?");
-        $requser->execute(array($pseudo, $passwd));
-        $userexist = $requser->rowCount();
-        if($userexist == 1) {
-            $userinfo = $requser->fetch();
-            $_SESSION['id'] = $userinfo['id'];
-            $_SESSION['pseudo'] = $userinfo['pseudo'];
-            echo message('Vous êtes maintenant connecté(e) à votre compte.', 'success');
-            echo redirectTo('0','/index');
+    //Si la variable pseudo & passwd existent (isset), ainsi que si elles ne sont pas vide (empty)
+    if (isset($pseudo) && !empty($pseudo) && isset($passwd) && !empty($passwd)) {
+        $req = $db->prepare('SELECT * FROM users WHERE pseudo = :pseudo');
+        $req->execute(array('pseudo' => $pseudo));
+        $user = $req->fetch();
+
+        if ($user) {
+            if (password_verify($passwd, $user['passwd'])) {
+                $_SESSION['id'] = $user['id'];
+                $_SESSION['pseudo'] = $user['pseudo'];
+                echo message('Vous êtes maintenant connecté(e) à votre compte.', 'success');
+                echo redirectTo('0', '/index');
+            } else {
+                // Le mot de passe est incorrecte 
+                echo message('Une erreur s\'est produite lors de la connexion à votre compte, veuillez vérifier les identifiants.', 'warning');
+            }
+        }else{
+            // L'utilisateur n'existe pas
+             echo message('Une erreur s\'est produite lors de la connexion à votre compte, veuillez vérifier les identifiants.', 'warning');
         }
-        else
-        {
-            echo message('Veuillez vérifier le formulaire de connexion.', 'warning');
-        }
-    } 
-    else
-    {
-        echo message('Les champs du formulaire ne peuvent pas être vide.', 'warning');
+    } else {
+        // Username ou password vide ou invalide.
+         echo message('Une erreur s\'est produite lors de la connexion à votre compte, veuillez vérifier les identifiants.', 'warning');
     }
 }

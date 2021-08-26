@@ -20,8 +20,8 @@
                                 $pseudo = htmlspecialchars($_POST['pseudo']);
                                 $mail = htmlspecialchars($_POST['mail']);
                                 $mail2 = htmlspecialchars($_POST['mail2']);
-                                $passwd = sha1($_POST['passwd']);
-                                $passwd2 = sha1($_POST['passwd2']);
+                                $passwd = password_hash($_POST['passwd'], PASSWORD_ARGON2I);
+                                $passwd2 = password_hash($_POST['passwd2'], PASSWORD_ARGON2I);
                                 verifRegister($pseudo, $passwd, $passwd2, $mail, $mail2);
                             }
                         ?>
