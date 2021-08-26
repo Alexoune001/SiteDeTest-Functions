@@ -21,22 +21,34 @@
                         ?>
                             <div class="float-start">
                             <?php
-                                if($pseudo['pseudo'] != $_SESSION['pseudo']) 
+                                if(isset($_SESSION['pseudo']))
+                                {
+                                    if($pseudo['pseudo'] == $_SESSION['pseudo']) { 
+                                        echo 'Voir mon profil ('.$_SESSION['pseudo'].')';
+                                    }
+                                    else
+                                    {
+                                        echo 'Voir le profil de '.$pseudo['pseudo'];
+                                    }
+                                } 
+                                else
                                 {
                                     echo 'Voir le profil de '.$pseudo['pseudo'];
-                                }
-                                else 
-                                {
-                                    echo 'Voir mon profil ('.$_SESSION['pseudo'].')';
                                 }
                             ?>
                             </div>
                             <div class="float-end">
-                                <?php if($pseudo['pseudo'] != $_SESSION['pseudo']) { ?>
-                                    <a class="btn btn-primary btn-sm" href="" title="Demander en ami(e)"><i class="fas fa-user-plus"></i></a>
-                                    <a class="btn btn-info btn-sm" href="" title="Envoyer un message privé"><i class="fas fa-envelope"></i></a>
-                                    <a class="btn btn-warning btn-sm" href="" title="Signaler ce membre"><i class="fas fa-exclamation-triangle"></i></a>
-                                <?php } ?>
+                                <?php 
+                                if(isset($_SESSION['pseudo'])) {
+                                    if($pseudo['pseudo'] != $_SESSION['pseudo']) { 
+                                ?>
+                                        <a class="btn btn-primary btn-sm" href="" title="Demander en ami(e)"><i class="fas fa-user-plus"></i></a>
+                                        <a class="btn btn-info btn-sm" href="" title="Envoyer un message privé"><i class="fas fa-envelope"></i></a>
+                                        <a class="btn btn-warning btn-sm" href="" title="Signaler ce membre"><i class="fas fa-exclamation-triangle"></i></a>
+                                <?php 
+                                    } 
+                                }
+                                ?>
                             </div>
                     </div>
                     <div class="card-body">
