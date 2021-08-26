@@ -24,10 +24,10 @@ function verifLogin($pseudo, $passwd)
             }
         }else{
             // L'utilisateur n'existe pas
-             echo message('Une erreur s\'est produite lors de la connexion à votre compte, veuillez vérifier les identifiants.', 'warning');
+            echo message('Une erreur s\'est produite lors de la connexion à votre compte, veuillez vérifier les identifiants.', 'warning');
         }
     } else {
         // Username ou password vide ou invalide.
-         echo message('Une erreur s\'est produite lors de la connexion à votre compte, veuillez vérifier les identifiants.', 'warning');
+        echo message('Une erreur s\'est produite lors de la connexion à votre compte, veuillez vérifier les identifiants.', 'warning');
     }
 }

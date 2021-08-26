@@ -5,6 +5,7 @@ RewriteRule ^([^\.]+)$ $1.php
 # Réécriture des URLs..
 RewriteRule ^login              pages/login.php [L]
 RewriteRule ^register           pages/register.php [L]
+RewriteRule ^edit               pages/edit.php [L]
 RewriteRule ^logout             pages/logout.php [L]
 RewriteRule ^profil-([0-9]+)    pages/profil.php?id=$1 [L]
 RewriteRule ^search             pages/search.php [L]
