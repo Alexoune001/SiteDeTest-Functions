@@ -11,41 +11,32 @@ function verifLogin($pseudo, $passwd)
             $userinfo = $requser->fetch();
             $_SESSION['id'] = $userinfo['id'];
             $_SESSION['pseudo'] = $userinfo['pseudo'];
-            echo validLogin();
+            echo message('Vous êtes maintenant connecté(e) à votre compte.', 'success');
             echo redirectIndex();
         }
         else
         {
-            echo verifPseudoPasswd();
+            echo message('Veuillez vérifier le formulaire de connexion.', 'warning');
         }
     } 
     else
     {
-        echo verifEmpty();
+        echo message('Les champs du formulaire ne peuvent pas être vide.', 'warning');
     }
 }
 
-function verifPseudoPasswd()
+function message($message, $type)
 {
-    $message = '<div class="alert alert-warning">
-        <i class="fas fa-exclamation-triangle"></i> <strong>Erreur:</strong> Veuillez vérifier le formulaire de connexion.
-    </div>';
-    return $message;
-}
+    if ($type == "warning" || $type == "danger") {
+        $message = '<div class="alert alert-'.$type.'">
+            <i class="fas fa-exclamation-triangle"></i> <strong>Erreur:</strong> ' . $message . '
+        </div>';
+    } elseif ($type == "success" || $type == "primary" || $type == "info") {
+        $message = '<div class="alert alert-'.$type.'">
+            <i class="fas fa-check-circle"></i>' . $message . '
+        </div>';
+    }
 
-function verifEmpty()
-{
-    $message = '<div class="alert alert-warning">
-        <i class="fas fa-exclamation-triangle"></i> <strong>Erreur:</strong> Les champs du formulaire ne peuvent pas être vide.
-    </div>';
-    return $message;
-}
-
-function validLogin()
-{
-    $message = '<div class="alert alert-success">
-        <i class="fas fa-check-circle"></i> Vous êtes maintenant connecté(e) à votre compte.
-    </div>';
     return $message;
 }
 
