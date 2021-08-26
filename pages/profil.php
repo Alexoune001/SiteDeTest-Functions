@@ -72,19 +72,7 @@
                                             </tr>
                                             <tr>
                                                 <td style="width:20px;"><i class="fas fa-user-graduate"></i> <strong>Grade</strong></td>
-                                                <td style="width:20px;">
-                                                    <?php
-                                                        if($data['groupe'] == 0) {
-                                                            echo '<span class="badge bg-secondary">Compte non activé</span>';
-                                                        }elseif($data['groupe'] == 1) {
-                                                            echo '<span class="badge bg-primary">Membre</span>';
-                                                        }elseif($data['groupe'] == 2) {
-                                                            echo '<span class="badge bg-warning">Modérateur</span>';
-                                                        }elseif($data['groupe'] == 3) {
-                                                            echo '<span class="badge bg-danger">Administrateur</span>';
-                                                        }
-											        ?>	                                                
-                                                </td>
+                                                <td style="width:20px;"><?= getGrade($data); ?></td>
                                                 <tr class="tr-member">
                                                     <td style="width:20px;"><i class="fas fa-calendar"></i> <strong>Date d'inscription</strong></td>
                                                     <td style="width:20px;"><?php echo $jour,'/',$mois,'/',$an; ?></td>
@@ -98,7 +86,7 @@
                         }
                         else 
                         {
-                            echo getError();
+                            echo message('Le compte n\'existe pas.', 'danger');
                         }
                         ?>
                     </div>

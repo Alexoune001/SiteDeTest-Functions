@@ -30,31 +30,13 @@
                                         $members = getMembers();
                                         while($data = $members->fetch())
                                         {
+                                            sscanf($data['date_register'], "%4s-%2s-%2s %2s:%2s:%2s", $an, $mois, $jour, $heure, $min, $sec); 
                                     ?>
                                             <tr>
                                                 <td><?= $data['id'] ?></td>
                                                 <td><a href="profil-<?= $data['id'] ?>" class="link"><?= $data['pseudo'] ?></a></td>
-                                                <td>
-                                                    <?php 
-                                                        if($data['groupe'] == 0) 
-                                                        {
-                                                            echo '<div class="badge bg-secondary">Compte non validé</div>';
-                                                        }
-                                                        elseif($data['groupe'] == 1) 
-                                                        {
-                                                            echo '<div class="badge bg-primary">Membre</div>';
-                                                        }
-                                                        elseif($data['groupe'] == 2) 
-                                                        {
-                                                            echo '<div class="badge bg-warning">Modérateur</div>';
-                                                        }
-                                                        elseif($data['groupe'] == 3)
-                                                        {
-                                                            echo '<div class="badge bg-danger">Administrateur</div>';
-                                                        }
-                                                    ?>
-                                                </td>
-                                                <td>25/08/2021</td>
+                                                <td><?= getGrade($data); ?></td>
+                                                <td><?= $jour,'/',$mois,'/',$an; ?></td>
                                             </tr>
                                     <?php
                                         }

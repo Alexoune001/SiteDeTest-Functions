@@ -1,4 +1,7 @@
 <?php
+/**
+ * Function pour vérifier l'enregistrement dans la base de donnée.
+*/
 function verifRegister($pseudo, $passwd, $passwd2, $mail, $mail2)
 {
     if(!empty($_POST['pseudo']) AND !empty($_POST['passwd']) AND !empty($_POST['passwd2']) AND !empty($_POST['mail']) AND !empty($_POST['mail2']))
@@ -14,7 +17,7 @@ function verifRegister($pseudo, $passwd, $passwd2, $mail, $mail2)
                 $username = $stmt->fetch();
                 if ($username)
                 {
-                    echo verifExistPseudo();
+                    echo message('Le pseudo est déjà enregistré dans notre base de donnée.','warning');
                 }
                 else 
                 {
@@ -23,7 +26,7 @@ function verifRegister($pseudo, $passwd, $passwd2, $mail, $mail2)
                     $email = $stmt->fetch();
                     if ($email)
                     {
-                        echo verifExistEmail();
+                        echo message('L\'adresse e-mail est déjà enregistrée dans notre base de donnée.', 'warning');
                     }
                     else 
                     {
@@ -31,72 +34,23 @@ function verifRegister($pseudo, $passwd, $passwd2, $mail, $mail2)
                         $stmt= $db->prepare($sql);
                         $stmt->execute([$pseudo, $mail, $passwd]);
 
-                        echo validRegister();
-                        header('Location: /index');
-                        exit;
+                        echo message('Votre compte a bien été enregistré dans notre base de donnée.', 'success');
+                        echo redirectTo('0','/index');
                     }
                 }
             } 
             else 
             {
-                echo verifMail();
+                echo message('Les deux adresses e-mails que vous avez notées ne correspondent pas.','warning');
             }
         } 
         else 
         {
-            echo verifPasswd();
+            echo message('Les deux mots de passes que vous avez notés ne correspondent pas.', 'warning');
         }
     } 
     else 
     {
-        echo verifForm();
+        echo message('Les champs du formulaire ne peuvent pas être vide.', 'warning');
     }
-}
-
-function validRegister()
-{
-    $message = '<div class="alert alert-success">
-        <i class="fas fa-check-circle"></i> Votre compte a bien été enregistré dans notre base de donnée.
-    </div>';
-    return $message;
-}
-
-function verifForm()
-{
-    $message = '<div class="alert alert-warning">
-        <i class="fas fa-exclamation-triangle"></i> <strong>Erreur:</strong> Veuillez vérifier <strong>tous</strong> less champs du formulaire.
-    </div>';
-    return $message;
-}
-
-function verifPasswd()
-{
-    $message = '<div class="alert alert-warning">
-        <i class="fas fa-exclamation-triangle"></i> <strong>Erreur:</strong> Les deux mots de passes que vous avez notés ne correspondent pas.
-    </div>';
-    return $message;
-}
-
-function verifMail()
-{
-    $message = '<div class="alert alert-warning">
-        <i class="fas fa-exclamation-triangle"></i> <strong>Erreur:</strong> Les deux adresses e-mails que vous avez notées ne correspondent pas.
-    </div>';
-    return $message;
-}
-
-function verifExistPseudo()
-{
-    $message = '<div class="alert alert-warning">
-        <i class="fas fa-exclamation-triangle"></i> <strong>Erreur:</strong> Le pseudo est déjà enregistré dans notre base de donnée.
-    </div>';
-    return $message;
-}
-
-function verifExistEmail()
-{
-    $message = '<div class="alert alert-warning">
-        <i class="fas fa-exclamation-triangle"></i> <strong>Erreur:</strong> L\'adresse e-mail est déjà enregistrée dans notre base de donnée.
-    </div>';
-    return $message;
 }

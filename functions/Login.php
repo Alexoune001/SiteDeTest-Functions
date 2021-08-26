@@ -1,4 +1,7 @@
 <?php
+/**
+ * Function pour vérifier la connexion à son compte.
+*/
 function verifLogin($pseudo, $passwd)
 {
     $db = dbConnect();
@@ -12,7 +15,7 @@ function verifLogin($pseudo, $passwd)
             $_SESSION['id'] = $userinfo['id'];
             $_SESSION['pseudo'] = $userinfo['pseudo'];
             echo message('Vous êtes maintenant connecté(e) à votre compte.', 'success');
-            echo redirectIndex();
+            echo redirectTo('0','/index');
         }
         else
         {
@@ -23,25 +26,4 @@ function verifLogin($pseudo, $passwd)
     {
         echo message('Les champs du formulaire ne peuvent pas être vide.', 'warning');
     }
-}
-
-function message($message, $type)
-{
-    if ($type == "warning" || $type == "danger") {
-        $message = '<div class="alert alert-'.$type.'">
-            <i class="fas fa-exclamation-triangle"></i> <strong>Erreur:</strong> ' . $message . '
-        </div>';
-    } elseif ($type == "success" || $type == "primary" || $type == "info") {
-        $message = '<div class="alert alert-'.$type.'">
-            <i class="fas fa-check-circle"></i>' . $message . '
-        </div>';
-    }
-
-    return $message;
-}
-
-function redirectIndex() 
-{
-    $redirect = '<meta http-equiv="refresh" content="0;URL=/index">';
-    return $redirect;
 }

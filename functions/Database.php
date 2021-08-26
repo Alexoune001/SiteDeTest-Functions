@@ -1,4 +1,7 @@
 <?php
+/**
+ * Function pour se connecter à la base de donnée.
+*/
 function dbConnect()
 {
     try

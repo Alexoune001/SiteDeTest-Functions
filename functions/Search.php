@@ -1,4 +1,7 @@
 <?php
+/**
+ * Function pour effectuer une recherche par rapport au pseudo d'un membre.
+*/
 function getSearch($requete)
 {
     $db = dbConnect();
@@ -31,6 +34,5 @@ function getSearch($requete)
                 }
             echo '</li></ul>';
         }
-    }
-        
+    }  
 }
