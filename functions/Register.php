@@ -2,7 +2,7 @@
 /**
  * Function pour vérifier l'enregistrement dans la base de donnée.
 */
-function verifRegister($pseudo, $passwd, $passwd2, $mail, $mail2)
+function verifRegister($pseudo, $passwd, $passwd2, $mail, $mail2, $description)
 {
     if(!empty($_POST['pseudo']) AND !empty($_POST['passwd']) AND !empty($_POST['passwd2']) AND !empty($_POST['mail']) AND !empty($_POST['mail2']))
     {   
@@ -30,9 +30,9 @@ function verifRegister($pseudo, $passwd, $passwd2, $mail, $mail2)
                     }
                     else 
                     {
-                        $sql = "INSERT INTO users (pseudo, email, passwd) VALUES (?,?,?)";
+                        $sql = "INSERT INTO users (pseudo, email, passwd, description) VALUES (?,?,?,?)";
                         $stmt= $db->prepare($sql);
-                        $stmt->execute([$pseudo, $mail, $passwd]);
+                        $stmt->execute([$pseudo, $mail, $passwd, $description]);
                         echo message('Votre compte a bien été enregistré dans notre base de donnée.', 'success');
                         echo redirectTo('0','/index');
                     }

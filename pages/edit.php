@@ -46,6 +46,11 @@
                                         <input type="text" name="newpass" class="form-control bg-dark text-white" placeholder="Entrez votre nouveau mot de passe" />
                                     </div>
 
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text"><i class="fas fa-sticky-note"></i></span>
+                                        <textarea name="description" class="form-control bg-dark text-white" rows="4"><?= html_entity_decode($data['description']); ?></textarea>
+                                    </div>
+
                                     <input type="submit" name="validate" class="btn btn-primary btn-sm" value="Valider les modifications" />
                                 </form>
                         <?php

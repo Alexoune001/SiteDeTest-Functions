@@ -24,7 +24,8 @@
                                 $mail2 = htmlspecialchars($_POST['mail2']);
                                 $passwd = password_hash($_POST['passwd'], PASSWORD_ARGON2I);
                                 $passwd2 = password_hash($_POST['passwd2'], PASSWORD_ARGON2I);
-                                verifRegister($pseudo, $passwd, $passwd2, $mail, $mail2);
+                                $description = "";
+                                verifRegister($pseudo, $passwd, $passwd2, $mail, $mail2, $description);
                             }
                         ?>
                         <form method="POST">

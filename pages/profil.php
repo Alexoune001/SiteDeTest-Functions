@@ -64,7 +64,7 @@
                                         <tbody>
                                             <tr>
                                                 <td style="width:20px;"><i class="far fa-user-circle"></i> <strong>Pseudo</strong></td>
-                                                <td style="width:20px;"><?php echo $data['pseudo']; ?></td>
+                                                <td style="width:20px;"><?= $data['pseudo']; ?></td>
                                             </tr>
                                             <tr>
                                                 <td style="width:20px;"><i class="fas fa-at"></i> <strong>Adresse e-mail</strong></td>
@@ -73,10 +73,14 @@
                                             <tr>
                                                 <td style="width:20px;"><i class="fas fa-user-graduate"></i> <strong>Grade</strong></td>
                                                 <td style="width:20px;"><?= getGrade($data); ?></td>
-                                                <tr class="tr-member">
-                                                    <td style="width:20px;"><i class="fas fa-calendar"></i> <strong>Date d'inscription</strong></td>
-                                                    <td style="width:20px;"><?php echo $jour,'/',$mois,'/',$an; ?></td>
-                                                </tr>    
+                                            </tr>
+                                            <tr>
+                                                <td style="width:20px;"><i class="fas fa-calendar"></i> <strong>Date d'inscription</strong></td>
+                                                <td style="width:20px;"><?= $jour,'/',$mois,'/',$an; ?></td>
+                                            </tr>    
+                                            <tr>
+                                                <td style="width:20px;"><i class="fas fa-sticky-note"></i> <strong>Description</strong></td>
+                                                <td style="width:20px;"><?= $data['description'] ?>
                                             </tr>
                                         </tbody>
                                     </table>
