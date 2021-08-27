@@ -13,11 +13,20 @@ function redirectTo($time, $path)
 */
 function message($message, $type)
 {
-    if ($type == "warning" || $type == "danger") {
+    if ($type == "warning" || $type == "danger") 
+    {
         $message = '<div class="alert alert-'.$type.'">
             <i class="fas fa-exclamation-triangle"></i> ' . $message . '
         </div>';
-    } elseif ($type == "success" || $type == "primary" || $type == "info") {
+    } 
+    elseif($type == "primary" || $type == "info")
+    {
+        $message = '<div class="alert alert-'.$type.'">
+            <i class="fas fa-info-circle"></i> ' . $message . '
+        </div>';
+    }
+    elseif ($type == "success") 
+    {
         $message = '<div class="alert alert-'.$type.'">
             <i class="fas fa-check-circle"></i> ' . $message . '
         </div>';

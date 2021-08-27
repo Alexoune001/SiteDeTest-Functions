@@ -7,3 +7,4 @@
     include('functions/Login.php');
     include('functions/Member.php');
     include('functions/Search.php');
+    include('functions/Signal.php');
