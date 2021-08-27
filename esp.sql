@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : jeu. 26 août 2021 à 14:33
+-- Généré le : ven. 27 août 2021 à 09:59
 -- Version du serveur : 5.7.31
 -- Version de PHP : 7.3.21
 
@@ -20,6 +20,22 @@ SET time_zone = "+00:00";
 --
 -- Base de données : `esp`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `signal_u`
+--
+
+DROP TABLE IF EXISTS `signal_u`;
+CREATE TABLE IF NOT EXISTS `signal_u` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_u` int(11) NOT NULL,
+  `pseudo` varchar(255) NOT NULL,
+  `raison` text NOT NULL,
+  `date_signal` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 

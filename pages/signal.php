@@ -16,7 +16,18 @@
                     <div class="card-header">Signaler un membre</div>
                     <div class="card-body">
                         <?php
-                            echo message('Le signalement doit avoir une raison <strong>valable</strong> afin que notre équipe puisse agir correctement sur le membre.', 'info');
+                        if($_GET['id'] >= 1) {
+                            if(isset($_SESSION['id'])) 
+                            { 
+                                echo message('Le signalement doit avoir une raison <strong>valable</strong> afin que notre équipe puisse agir correctement sur le membre.', 'info');
+                                if(isset($_POST['validate']))
+                                {
+                                    $id_u = intval($_SESSION['id']);
+                                    $pseudo = $_POST['pseudo'];
+                                    $raison = $_POST['raison'];
+    
+                                    getSignalMember($id_u, $pseudo, $raison);
+                                }
                         ?>
                         <form method="POST">
                             <div class="input-group mb-3">
@@ -25,10 +36,22 @@
                             </div>
                             <div class="input-group mb-3">
                                 <span class="input-group-text"><i class="fas fa-paragraph"></i></span>
-                                <textarea class="form-control bg-dark text-white" name="raison" rows="4">Veuillez entrer votre raison du signalement.</textarea>
+                                <input type="text" name="raison" class="form-control bg-dark text-white" placeholder="Entrez une raison pour votre signalement" />
                             </div>
                             <input type="submit" name="validate" class="btn btn-primary btn-sm" value="Signaler le membre" />                            
                         </form>
+                        <?php
+                            }
+                            else 
+                            {
+                                echo message('Vous devez être <a href="/login" class="link">connecté(e)</a> pour signaler un membre.', 'warning');
+                            }
+                        }
+                        else 
+                        {
+                            echo message('Le compte n\'existe pas.', 'danger');
+                        }
+                        ?>
                     </div>
                 </div>
             </div>
