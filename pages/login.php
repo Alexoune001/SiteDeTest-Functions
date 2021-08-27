@@ -15,7 +15,9 @@
                 <div class="card bg-dark text-white">
                     <div class="card-header">Se connecter à l'espace membre</div>
                     <div class="card-body">
-                        <?php 
+                    <?php 
+                        if(!isset($_SESSION['id'])) 
+                        { 
                             if(isset($_POST['validate']))
                             {
                                 $pseudo = htmlspecialchars($_POST['pseudo']);
@@ -28,6 +30,13 @@
                             <input type="password" name="passwd" class="form-control bg-dark text-white mb-2" placeholder="Entrez votre mot de passe" />
                             <input type="submit" name="validate" class="btn btn-primary btn-sm" value="Se connecter" />
                         </form>
+                    <?php
+                        }
+                        else 
+                        {
+                            echo message('Vous êtes déjà connecté(e).', 'warning');
+                        }
+                    ?>
                     </div>
                 </div>
             </div>

@@ -16,6 +16,8 @@
                     <div class="card-header">Formulaire d'inscription</div>
                     <div class="card-body">
                         <?php 
+                        if(!isset($_SESSION['id'])) 
+                        { 
                             if(isset($_POST['validate'])) {	
                                 $pseudo = htmlspecialchars($_POST['pseudo']);
                                 $mail = htmlspecialchars($_POST['mail']);
@@ -33,6 +35,13 @@
                             <input type="email" name="mail2" class="form-control bg-dark text-white mb-2" placeholder="Confirmer votre adresse e-mail" />
                             <input type="submit" name="validate" class="btn btn-primary btn-sm" value="Valider mon inscription" />
                         </form>
+                        <?php
+                        }
+                        else
+                        {
+                            echo message('Vous êtes déjà inscrit(e) et connecté(e) au site web.', 'warning');
+                        }
+                        ?>
                     </div>
                 </div>
             </div>

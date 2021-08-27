@@ -4,5 +4,6 @@
 */
 function editProfil($pseudo, $email, $passwd)
 {
-
+    $db = dbConnect();
+    
 }
