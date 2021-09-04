@@ -25,15 +25,24 @@
                                     $id = intval($_SESSION['id']);
                                     $member = getMember($id);
                                     $data = $member->fetch();
+                                
+                                if(isset($_POST['validate'])) {
+                                    $userid = intval($_SESSION['id']);
+                                    $oldmail = htmlspecialchars($_POST['oldmail']);
+                                    $newmail = htmlspecialchars($_POST['newmail']);
+                                    $description = html_entity_decode($_POST['description']);
+
+                                    editProfil($oldmail, $newmail, $description, $userid);
+                                }
                                 ?>
                                     <div class="input-group mb-3">
                                         <span class="input-group-text"><i class="fas fa-at"></i></span>
-                                        <input type="text" name="oldmail" class="form-control bg-dark text-white" value="<?= $data['email'] ?>" />
+                                        <input type="email" name="oldmail" class="form-control bg-dark text-white" value="<?= $data['email'] ?>" />
                                     </div>
 
                                     <div class="input-group mb-3">
                                         <span class="input-group-text"><i class="fas fa-at"></i></span>
-                                        <input type="text" name="newmail" class="form-control bg-dark text-white" placeholder="Entrez votre nouvelle adresse e-mail" />
+                                        <input type="email" name="newmail" class="form-control bg-dark text-white" placeholder="Entrez votre nouvelle adresse e-mail" />
                                     </div>
 
                                     <div class="input-group mb-3">
