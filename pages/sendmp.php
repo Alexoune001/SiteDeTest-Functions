@@ -13,7 +13,7 @@
         <main class="flex-shrink-0 mb-2">
             <div class="container">
                 <div class="card bg-dark text-white">
-                    <div class="card-header">Signaler un membre</div>
+                    <div class="card-header">Envoyer un message privé</div>
                     <div class="card-body">
                         <?php
                         if($_GET['id'] >= 1) {
@@ -21,34 +21,39 @@
                             { 
                                 if(isset($_POST['validate']))
                                 {
-                                    $id_u = intval($_SESSION['id']);
-                                    $pseudo = $_POST['pseudo'];
-                                    $raison = $_POST['raison'];
-                                    getSignalMember($id_u, $pseudo, $raison);
+                                    $exp = $_SESSION['pseudo'];
+                                    $dest = $_POST['destinataire'];
+                                    $titre = $_POST['titre'];
+                                    $message = html_entity_decode($_POST['message']);
+                                    getSendMsgPrivate($exp, $dest, $titre, $message);
                                 }
+
                                 $getId = intval($_GET['id']);
                                 $user0 = getPseudo($getId);
                                 $pseudo = $user0->fetch();
                                 if(!empty($pseudo)){
                                     if($pseudo['pseudo'] != $_SESSION['pseudo']) { 
-                                        echo message('Le signalement doit avoir une raison <strong>valable</strong> afin que notre équipe puisse agir correctement sur le membre.', 'info');
                         ?>
-                                        <form method="POST">
-                                            <div class="input-group mb-3">
-                                                <span class="input-group-text"><i class="fas fa-exclamation-triangle"></i></span>
-                                                <input type="text" name="pseudo" class="form-control bg-dark text-white" placeholder="Entrez le pseudo du membre à signaler" />
-                                            </div>
-                                            <div class="input-group mb-3">
-                                                <span class="input-group-text"><i class="fas fa-paragraph"></i></span>
-                                                <input type="text" name="raison" class="form-control bg-dark text-white" placeholder="Entrez une raison pour votre signalement" />
-                                            </div>
-                                            <input type="submit" name="validate" class="btn btn-primary btn-sm" value="Signaler le membre" />                            
-                                        </form>
+                                    <form method="POST">
+                                        <div class="input-group mb-3">
+                                            <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                            <input type="text" name="destinataire" class="form-control bg-dark text-white" value="<?= $pseudo['pseudo'] ?>" readonly />
+                                        </div>
+                                        <div class="input-group mb-3">
+                                            <span class="input-group-text"><i class="fas fa-comment-dots"></i></span>
+                                            <input type="text" name="titre" class="form-control bg-dark text-white" />
+                                        </div>
+                                        <div class="input-group mb-3">
+                                            <span class="input-group-text"><i class="fas fa-paragraph"></i></span>
+                                            <textarea class="form-control bg-dark text-white" name="message" col="8" rows="6"></textarea>                               
+                                        </div>
+                                        <input type="submit" name="validate" class="btn btn-primary btn-sm" value="Envoyer le message privé" />                            
+                                    </form>
                         <?php
                                     }
                                     else 
                                     {
-                                        echo message('Vous ne pouvez pas signaler votre compte.', 'warning'); 
+                                        echo message('Vous ne pouvez pas envoyer un message privé à vous même.', 'warning'); 
                                     }
                                 }
                                 else 
@@ -58,7 +63,7 @@
                             }
                             else 
                             {
-                                echo message('Vous devez être <a href="/login" class="link">connecté(e)</a> pour signaler un membre.', 'warning');
+                                echo message('Vous devez être <a href="/login" class="link">connecté(e)</a> pour contacter le membre.', 'warning');
                             }
                         }
                         else 
