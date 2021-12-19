@@ -40,27 +40,21 @@ function message($message, $type)
 */
 function getGrade($data) 
 {
-    $role = $data['groupe'];
-    switch ($role)
+    if($data['groupe'] == 0) 
     {
-        case 0:
-            echo '<div class="badge bg-secondary">Compte non validé</div>'; 
-        break;
-
-        case 1:
-            echo '<div class="badge bg-primary">Membre</div>';
-        break;
-
-        case 2:
-            echo '<div class="badge bg-warning">Modérateur</div>';
-        break;
-
-        case 3:
-            echo '<div class="badge bg-danger">Administrateur</div>';
-        break;
-
-        default:
-            case 0;
+        echo '<div class="badge bg-secondary">Compte non validé</div>';
+    }
+    elseif($data['groupe'] == 1) 
+    {
+        echo '<div class="badge bg-primary">Membre</div>';
+    }
+    elseif($data['groupe'] == 2) 
+    {
+        echo '<div class="badge bg-warning">Modérateur</div>';
+    }
+    elseif($data['groupe'] == 3)
+    {
+        echo '<div class="badge bg-danger">Administrateur</div>';
     }
 }
 

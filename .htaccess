@@ -2,7 +2,7 @@ RewriteEngine On
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^([^\.]+)$ $1.php
 
-# Réécriture des URLs
+# Réécriture des URLs..
 RewriteRule ^login              pages/login.php [L]
 RewriteRule ^register           pages/register.php [L]
 RewriteRule ^edit               pages/edit.php [L]
@@ -10,6 +10,3 @@ RewriteRule ^logout             pages/logout.php [L]
 RewriteRule ^profil-([0-9]+)    pages/profil.php?id=$1 [L]
 RewriteRule ^search             pages/search.php [L]
 RewriteRule ^signal-([0-9]+)    pages/signal.php?id=$1 [L]
-RewriteRule ^inbox              pages/inbox.php [L]
-RewriteRule ^sendmp-([0-9]+)    pages/sendmp.php?id=$1 [L]
-RewriteRule ^viewmp-([0-9]+)    pages/viewmp.php?id=$1 [L]

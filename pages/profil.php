@@ -43,7 +43,7 @@
                                     if($pseudo['pseudo'] != $_SESSION['pseudo']) { 
                                 ?>
                                         <a class="btn btn-primary btn-sm" href="/addfriend-<?= $getId; ?>" title="Demander en ami(e)"><i class="fas fa-user-plus"></i></a>
-                                        <a class="btn btn-info btn-sm" href="/sendmp-<?= $getId; ?>" title="Envoyer un message privé"><i class="fas fa-envelope"></i></a>
+                                        <a class="btn btn-info btn-sm" href="/sendmp" title="Envoyer un message privé"><i class="fas fa-envelope"></i></a>
                                         <a class="btn btn-warning btn-sm" href="/signal-<?= $getId; ?>" title="Signaler ce membre"><i class="fas fa-exclamation-triangle"></i></a>
                                 <?php 
                                     } 
