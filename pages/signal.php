@@ -19,42 +19,28 @@
                         if($_GET['id'] >= 1) {
                             if(isset($_SESSION['id'])) 
                             { 
+                                echo message('Le signalement doit avoir une raison <strong>valable</strong> afin que notre équipe puisse agir correctement sur le membre.', 'info');
                                 if(isset($_POST['validate']))
                                 {
                                     $id_u = intval($_SESSION['id']);
                                     $pseudo = $_POST['pseudo'];
                                     $raison = $_POST['raison'];
+    
                                     getSignalMember($id_u, $pseudo, $raison);
                                 }
-                                $getId = intval($_GET['id']);
-                                $user0 = getPseudo($getId);
-                                $pseudo = $user0->fetch();
-                                if(!empty($pseudo)){
-                                    if($pseudo['pseudo'] != $_SESSION['pseudo']) { 
-                                        echo message('Le signalement doit avoir une raison <strong>valable</strong> afin que notre équipe puisse agir correctement sur le membre.', 'info');
                         ?>
-                                        <form method="POST">
-                                            <div class="input-group mb-3">
-                                                <span class="input-group-text"><i class="fas fa-exclamation-triangle"></i></span>
-                                                <input type="text" name="pseudo" class="form-control bg-dark text-white" placeholder="Entrez le pseudo du membre à signaler" />
-                                            </div>
-                                            <div class="input-group mb-3">
-                                                <span class="input-group-text"><i class="fas fa-paragraph"></i></span>
-                                                <input type="text" name="raison" class="form-control bg-dark text-white" placeholder="Entrez une raison pour votre signalement" />
-                                            </div>
-                                            <input type="submit" name="validate" class="btn btn-primary btn-sm" value="Signaler le membre" />                            
-                                        </form>
+                        <form method="POST">
+                            <div class="input-group mb-3">
+                                <span class="input-group-text"><i class="fas fa-exclamation-triangle"></i></span>
+                                <input type="text" name="pseudo" class="form-control bg-dark text-white" placeholder="Entrez le pseudo du membre à signaler" />
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text"><i class="fas fa-paragraph"></i></span>
+                                <input type="text" name="raison" class="form-control bg-dark text-white" placeholder="Entrez une raison pour votre signalement" />
+                            </div>
+                            <input type="submit" name="validate" class="btn btn-primary btn-sm" value="Signaler le membre" />                            
+                        </form>
                         <?php
-                                    }
-                                    else 
-                                    {
-                                        echo message('Vous ne pouvez pas signaler votre compte.', 'warning'); 
-                                    }
-                                }
-                                else 
-                                {
-                                    echo message('Le compte n\'existe pas.', 'danger');
-                                }
                             }
                             else 
                             {

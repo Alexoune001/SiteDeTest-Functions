@@ -27,25 +27,12 @@
                                     $data = $member->fetch();
                                 
                                 if(isset($_POST['validate'])) {
-                                    $userid = intval($_SESSION['id']);       
+                                    $userid = intval($_SESSION['id']);
                                     $oldmail = htmlspecialchars($_POST['oldmail']);
                                     $newmail = htmlspecialchars($_POST['newmail']);
                                     $description = html_entity_decode($_POST['description']);
-                                    $old_password = $_POST['oldpass'];
-                                    $new_password = password_hash($_POST['newpass'], PASSWORD_ARGON2I);
 
-                                    if(!empty($newmail)) {
-                                        editMail($oldmail, $newmail, $userid);
-                                    }
-
-                                    if(!empty($description)) {
-                                        editDescription($description, $userid);
-                                    }
-                                    
-                                    if(!empty($new_password))
-                                    {
-                                        editPassword($old_password, $new_password, $userid);
-                                    }
+                                    editProfil($oldmail, $newmail, $description, $userid);
                                 }
                                 ?>
                                     <div class="input-group mb-3">
@@ -60,12 +47,12 @@
 
                                     <div class="input-group mb-3">
                                         <span class="input-group-text"><i class="fas fa-key"></i></span>
-                                        <input type="password" name="oldpass" class="form-control bg-dark text-white" value="<?php if(isset($_POST['oldpass'])) {$_POST['oldpass'];} ?>" />
+                                        <input type="text" name="oldpass" class="form-control bg-dark text-white" placeholder="Entrez votre mot de passe actuel" />
                                     </div>
 
                                     <div class="input-group mb-3">
                                         <span class="input-group-text"><i class="fas fa-key"></i></span>
-                                        <input type="password" name="newpass" class="form-control bg-dark text-white" placeholder="Entrez votre nouveau mot de passe" />
+                                        <input type="text" name="newpass" class="form-control bg-dark text-white" placeholder="Entrez votre nouveau mot de passe" />
                                     </div>
 
                                     <div class="input-group mb-3">
